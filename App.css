@@ -1,0 +1,318 @@
+/* src/App.css */
+
+/* --- Globals & Layout (Foundation) --- */
+.app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+    background-color: #f4f7fa; /* Light background */
+}
+
+/* --- Navbar --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.menu a {
+    margin-right: 20px;
+    text-decoration: none;
+    color: #555;
+}
+.new-ticket-btn {
+    padding: 8px 15px;
+    background-color: #1a73e8; /* Blue */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* --- Banner & Stats (The Vector/Gradient Cards) --- */
+.banner {
+    padding: 30px;
+    background: linear-gradient(90deg, #4b39ef 0%, #7d26c5 100%); /* Overall Banner Gradient */
+    color: white;
+}
+.stats-grid {
+    display: flex;
+    gap: 30px; /* Increased gap for better look */
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: center; 
+}
+.stat-card {
+    /* Base Card Design */
+    flex-grow: 1; 
+    max-width: 400px; 
+    height: 150px; 
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); 
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* Add the Vector Pattern Background */
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: 50% auto; 
+    position: relative; 
+    overflow: hidden; 
+}
+.stat-card.purple { 
+    /* In-Progress: Gradient + Vector */
+    background: 
+        /* Vector pattern over the gradient */
+        url('./assets/vector1.png') no-repeat top right / 50% auto, 
+        /* Primary Gradient for In-Progress */
+        linear-gradient(135deg, #9955F7 0%, #7d26c5 100%); 
+    position: relative;
+}
+
+.stat-card.purple::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: url('./assets/vector1.png') no-repeat top left / 50% auto;
+    transform: scaleX(-1);
+    z-index: 1;
+}
+.stat-card.green { 
+    /* Resolved: Gradient + Vector */
+    background: 
+        /* Vector pattern over the gradient */
+        url('./assets/vector1.png') no-repeat top right / 50% auto, 
+        /* Primary Gradient for Resolved */
+        linear-gradient(135deg, #51D876 0%, #28a745 100%); 
+    position: relative;
+}
+
+.stat-card.green::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: url('./assets/vector1.png') no-repeat top left / 50% auto;
+    transform: scaleX(-1);
+    z-index: 1;
+}
+
+/* Stat Typography and Icons */
+.stat-card h1 { 
+    font-size: 3.5rem; /* Larger font for count */
+    margin: 5px 0 0; 
+    font-weight: 500;
+}
+.stat-card h3 { 
+    font-size: 1.2rem; 
+    margin: 0; 
+    opacity: 0.9;
+}
+.stat-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Main Content Grid (Two Columns) --- */
+.main-content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* 2/3 for tickets, 1/3 for task status */
+    gap: 30px;
+    padding: 30px;
+    flex-grow: 1; /* Pushes the footer down */
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* --- Ticket List (Left Side) --- */
+.customer-tickets-container h2 { margin-bottom: 20px; }
+.ticket-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two-column grid for cards */
+    gap: 20px;
+}
+.ticket-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.ticket-card .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* --- Status and Priority Badges (Grouped here) --- */
+.status-badge, .priority-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: white;
+    display: inline-block; /* Ensure badges behave correctly */
+}
+.status-badge.open { background-color: #28a745; } /* Green 'Open' */
+
+.priority-badge {
+    font-size: 0.75rem;
+}
+.priority-badge.high-priority { background-color: #dc3545; } /* Red */
+.priority-badge.medium-priority { background-color: #ffc107; color: #333; } /* Yellow */
+.priority-badge.low-priority { background-color: #17a2b8; } /* Light Blue */
+
+
+.footer-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+.select-btn {
+    width: 100%;
+    padding: 8px;
+    margin-top: 15px;
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.select-btn:hover { background-color: #155cb8; }
+
+/* --- Task Status (Right Side) --- */
+.task-status-container {
+    background-color: #f4f7fa;
+}
+.in-progress-task-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+.task-title {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.complete-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745; /* Green */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.resolved-item {
+    background-color: #e9ecef;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+.placeholder-text {
+    color: #999;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* --- Footer --- */
+.footer {
+    background-color: #343a40; /* Dark background */
+    color: white;
+    padding: 40px 30px 20px;
+    margin-top: auto; /* Ensure it sticks to the bottom */
+}
+.footer-content-grid {
+    display: grid;
+    grid-template-columns: 2fr repeat(4, 1fr);
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto 20px;
+}
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-social ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-social li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+.footer-links li {
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+.copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #495057;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+/* --- Responsiveness (Challenge Requirement) --- */
+@media (max-width: 768px) {
+    .main-content-grid {
+        grid-template-columns: 1fr; /* Stack columns on mobile */
+        gap: 20px;
+        padding: 15px;
+    }
+    .ticket-grid {
+        grid-template-columns: 1fr; /* Stack cards on mobile */
+    }
+    .stats-grid {
+        flex-direction: column; /* Stack stats on mobile */
+        width: 100%;
+    }
+    .stat-card {
+        width: 100%;
+    }
+    .footer-content-grid {
+        grid-template-columns: 1fr; /* Stack footer sections */
+    }
+    .navbar {
+        flex-direction: column;
+    }
+    .menu {
+        margin-top: 10px;
+    }
+    .menu a {
+        display: block;
+        margin: 5px 0;
+    }
+}
